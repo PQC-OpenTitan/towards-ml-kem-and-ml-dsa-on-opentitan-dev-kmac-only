@@ -386,7 +386,30 @@ poly_sub:
   
   ret
 
+/*
+ * Name:        poly_tomont
+ *
+ * Description: Put the input polynomial out of Montgomery domain
+ *
+ * Arguments:   - 
+ *
+ * Flags: Clobbers FG0, has no meaning beyond the scope of this subroutine.
+ *
+ * @param[in/out]  x10: dptr_input, dmem pointer to first poly
+ * @param[in]      x11: ptr to const_tomont = 2^32 % Q
+ *
+ * clobbered registers: x4-x30, w0-w31
+ * clobbered flag groups: None
+ */
+.globl poly_tomont
+poly_tomont:
+  /* Load const_tomont */
+  li x4, 0
+  bn.lid x4++, 0(x11)
 
-
-
-
+  LOOPI 16, 3
+    bn.lid       x4, 0(x10)
+    bn.mulvm.16H w1, w0, w1
+    bn.sid       x4, 0(x10++)
+  
+  ret

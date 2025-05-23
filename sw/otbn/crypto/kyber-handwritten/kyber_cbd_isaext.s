@@ -57,7 +57,7 @@ cbd2:
                 bn.rshi w7, w31, w7 >> 12
                 bn.rshi w1, w31, w1 >> 4
                 bn.rshi w0, w31, w0 >> 4
-            bn.subv.16H w2, w6, w7
+            bn.subvm.16H w2, w6, w7
             bn.sid x6, 0(x11++)
         NOP
     ret    
@@ -157,7 +157,7 @@ cbd3:
                 bn.rshi w9, w31, w9 >> 10
                 bn.rshi w0, w31, w0 >> 6
                 bn.rshi w3, w31, w3 >> 6
-            bn.subv.16H w11, w8, w9
+            bn.subvm.16H w11, w8, w9
             bn.sid x19, 0(x11++)
         LOOPI 10, 6
             bn.rshi w8, w0, w8 >> 6
@@ -177,7 +177,7 @@ cbd3:
             bn.rshi w9, w31, w9 >> 10
             bn.rshi w1, w31, w1 >> 6 
             bn.rshi w4, w31, w4 >> 6
-        bn.subv.16H w11, w8, w9
+        bn.subvm.16H w11, w8, w9
         bn.sid  x19, 0(x11++)        
 
         /* Compute 16*3=48 coeffs */ 
@@ -189,7 +189,7 @@ cbd3:
                 bn.rshi w9, w31, w9 >> 10
                 bn.rshi w1, w31, w1 >> 6 
                 bn.rshi w4, w31, w4 >> 6
-            bn.subv.16H w11, w8, w9
+            bn.subvm.16H w11, w8, w9
             bn.sid  x19, 0(x11++)
         LOOPI 5, 6
             bn.rshi w8, w4, w8 >> 6 
@@ -205,7 +205,7 @@ cbd3:
             bn.rshi w9, w31, w9 >> 10
             bn.rshi w2, w31, w2 >> 6 
             bn.rshi w5, w31, w5 >> 6
-        bn.subv.16H w11, w8, w9
+        bn.subvm.16H w11, w8, w9
         bn.sid  x19, 0(x11++)
 
         /* Compute 16*2=32 coeffs */
@@ -216,7 +216,7 @@ cbd3:
             bn.rshi w9, w31, w9 >> 10
             bn.rshi w2, w31, w2 >> 6 
             bn.rshi w5, w31, w5 >> 6
-        bn.subv.16H w11, w8, w9
+        bn.subvm.16H w11, w8, w9
         bn.sid  x19, 0(x11++)
         LOOPI 15, 6
             bn.rshi w8, w2, w8 >> 6 
@@ -227,7 +227,7 @@ cbd3:
             bn.rshi w5, w31, w5 >> 6
         bn.rshi w8, w2, w8 >> 16
         bn.rshi w9, w6, w9 >> 16
-        bn.subv.16H w11, w8, w9 
+        bn.subvm.16H w11, w8, w9 
         bn.sid  x19, 0(x11++)
     ret
 
@@ -272,4 +272,3 @@ cbd3_const:
     .word 0x1c71c71c
     .word 0xc71c71c7
     .word 0x71c71c71
-

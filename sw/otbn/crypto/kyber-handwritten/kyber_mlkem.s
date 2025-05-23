@@ -306,6 +306,14 @@ indcpa_keypair:
     addi a2, a2, KYBER_GEN_MATRIX_NONCE 
   .endr 
 
+  /*** poly_tomont ***/
+  li  a0, STACK_A
+  add a0, fp, a0
+  la  a1, const_tomont
+  LOOPI KYBER_K, 2
+    jal x1, poly_tomont
+    NOP
+
   /*** CBD e ***/
   li   a5, STACK_TMP
   li   a1, STACK_SKPV
