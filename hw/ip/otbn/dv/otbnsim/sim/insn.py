@@ -801,7 +801,8 @@ class BNMULV(OTBNInsn):
         else:
             size = 16
         mod_val = extract_sub_word(state.wsrs.MOD.read_unsigned(), size, 0)
-        result = 0
+        qinv_val = extract_sub_word(state.wsrs.MOD.read_unsigned(), size, (32//size))
+        result = state.wdrs.get_reg(self.wrd).read_unsigned()
 
         # Extract the lane
         if lane_mode:
@@ -813,15 +814,18 @@ class BNMULV(OTBNInsn):
                 bi = OTBNInsn.from_2s_complement(extract_sub_word(b, size, i), size)
 
             resulti = (ai * bi)  # TODO: match to hw implementation
-            if DEBUG_ARITH:
-                eprint(f"modulus {mod_val}")
-                # eprint(f"mulmv {ai} * {bi} = {resulti} = {cmod(resulti,mod_val)}")
 
             if red:
-                resulti = cmod(resulti, mod_val)
+                t = ((resulti % (2**size)) * qinv_val) % (2**size)
+                resulti = (resulti + t * mod_val) >> size
+                if resulti >= mod_val:
+                    resulti -= mod_val
+
+            if DEBUG_ARITH:
+                eprint(f"modulus {mod_val}")
+                eprint(f"mulmv {ai} * {bi} = {ai * bi} = {resulti}")
 
             result = (result << size) | (OTBNInsn.to_2s_complement(resulti, size) & ((1 << size) - 1))
-
         result = result & ((1 << 256) - 1)
         state.wdrs.get_reg(self.wrd).write_unsigned(result)
 
@@ -1626,7 +1630,7 @@ class BNTRN(OTBNInsn):
 
         result = result & ((1 << 256) - 1)
         if (DEBUG_ARITH):
-            eprint(f"trn: {format(a,'064x')}, {format(b,'06x')},{format(result, '064x')}")
+            eprint(f"trn: {format(a,'064x')}, {format(b,'064x')}, {format(result, '064x')}")
         state.wdrs.get_reg(self.wrd).write_unsigned(result)
 
 INSN_CLASSES = [

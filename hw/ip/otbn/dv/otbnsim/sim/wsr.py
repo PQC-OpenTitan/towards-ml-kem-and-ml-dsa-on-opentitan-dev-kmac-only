@@ -208,60 +208,6 @@ class RandWSR(WSR):
         self._next_random_value = value
         self._next_pending_request = False
 
-class KMACMSGWSR(WSR):
-    '''Models KMAC_MSG Structure'''
-    def __init__(self, name: str):
-        super().__init__(name)
-        self._value = 0
-        self._next_value = None  # type: Optional[int]
-        self._N_CYCLES_UNTIL_WREADY = 6
-
-    def read_u32(self) -> int:
-        '''Read a 32-bit unsigned result'''
-        return self.read_unsigned() & ((1 << 32) - 1)
-
-    def write_unsigned(self, value: int) -> None:
-        assert 0 <= value < (1 << 256)
-        if self.wready:
-            self._next_value = value
-            self._pending_write = True
-            self.wready = False
-            self.cycles_since_last_write = 1 if self.stalled else 0
-            self.stalled = False
-
-    def write_invalid(self) -> None:
-        self._next_value = None
-        self._pending_write = True
-
-    def on_start(self) -> None:
-        self.wready = True
-        self.stalled = False
-        self._value = 0
-        self._next_value = None
-        self.cycles_since_last_write = 0
-
-    def read_unsigned(self) -> int:
-        return self._value
-
-    def step(self) -> None:
-        self.cycles_since_last_write += 1
-        if self.cycles_since_last_write >= self._N_CYCLES_UNTIL_WREADY:
-            self.wready = True
-
-    def commit(self) -> None:
-        if self._next_value is not None:
-            self._value = self._next_value
-        self._next_value = None
-        self._pending_write = False
-        return
-
-    def abort(self) -> None:
-        self._next_value = None
-        self._pending_write = False
-
-    def changes(self) -> List[TraceWSR]:
-        return ([TraceWSR(self.name, self._next_value)]
-                if self._pending_write else [])
 
 class URNDWSR(WSR):
     '''Models URND PRNG Structure'''
@@ -1130,6 +1076,7 @@ class WSRFile:
             9: self.KMAC_MSG,
             10: self.KMAC_DIGEST
             }
+
 
     def on_start(self) -> None:
         '''Called at the start of an operation

@@ -20,14 +20,6 @@ class CSRFile:
         self._known_indices.add(0x7c8)  # FLAGS
         for idx in range(0x7d0, 0x7d8):
             self._known_indices.add(idx)  # MODi
-        self._known_indices.add(0x7d9)  # KMAC_CFG
-        for idx in range(0x7da, 0x7e2):
-            self._known_indices.add(idx)  # KMAC_MSGi
-        self._known_indices.add(0x7e2)  # KMAC_STATUS
-        for idx in range(0x7e3, 0x7eb):
-            self._known_indices.add(idx)  # KMAC_DIGEST0i
-        for idx in range(0x7eb, 0x7f3):
-            self._known_indices.add(idx)  # KMAC_DIGEST1i
         self._known_indices.add(0x7d8)  # RND_PREFETCH
         self._known_indices.add(0x7d9)  # KMAC_CFG
         self._known_indices.add(0x7e2)  # KMAC_STATUS
@@ -118,13 +110,6 @@ class CSRFile:
             mod_n = idx - 0x7d0
             old = wsrs.MOD.read_unsigned()
             wsrs.MOD.write_unsigned(self._set_field(mod_n, 32, value, old))
-            return
-
-        if 0x7da <= idx <= 0x7e1:
-            # KMAC_MSG0 .. KMAC_MSG7. KMAC_MSGi is bits [32*(i+1)-1..32*i]. read,modify,write.
-            kmac_msg_n = idx - 0x7da
-            old = wsrs.KMAC_MSG.read_unsigned()
-            wsrs.KMAC_MSG.write_unsigned(self._set_field(kmac_msg_n, 32, value, old))
             return
 
         if idx == 0x7d8:
