@@ -2902,23 +2902,6 @@ otbn_binary(
     ]
 )
 
-otbn_binary(
-    name = "otbn_mlkem_isaext_keypair_test",
-    srcs = [
-        "kyber_mlkem_keypair_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/kyber-handwritten:kyber_packing",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly_gen_matrix",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_cbd_isaext",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_basemul",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_ntt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_intt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_mlkem",
-    ]
-)
-
 # ML-KEM encap binaries for Verilator test
 otbn_binary(
     name = "otbn_mlkem_plain_encap_test",
@@ -2952,23 +2935,6 @@ otbn_binary(
         "//sw/otbn/crypto/kyber-handwritten:kyber_base_ntt",
         "//sw/otbn/crypto/kyber-handwritten:kyber_base_intt",
         "//sw/otbn/crypto/kyber-handwritten:kyber_base_mlkem",
-    ]
-)
-
-otbn_binary(
-    name = "otbn_mlkem_isaext_encap_test",
-    srcs = [
-        "kyber_mlkem_enc_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/kyber-handwritten:kyber_packing",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly_gen_matrix",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_cbd_isaext",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_basemul",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_ntt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_intt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_mlkem",
     ]
 )
 
@@ -3008,23 +2974,6 @@ otbn_binary(
     ]
 )
 
-otbn_binary(
-    name = "otbn_mlkem_isaext_decap_test",
-    srcs = [
-        "kyber_mlkem_dec_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/kyber-handwritten:kyber_packing",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly_gen_matrix",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_poly",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_cbd_isaext",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_basemul",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_ntt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_intt",
-        "//sw/otbn/crypto/kyber-handwritten:kyber_mlkem",
-    ]
-)
-
 # ML-DSA keypair binaries for Verilator tests
 otbn_binary(
     name = "otbn_mldsa_plain_keypair_test",
@@ -3056,22 +3005,6 @@ otbn_binary(
 )
 
 otbn_binary(
-    name = "otbn_mldsa_isaext_keypair_test",
-    srcs = [
-        "key_pair_dilithium_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/handwritten:key_pair_dilithium",
-        "//sw/otbn/crypto/handwritten:ntt_dilithium",
-        "//sw/otbn/crypto/handwritten:intt_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_pointwise_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_add_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_dilithium",
-        "//sw/otbn/crypto/handwritten:rounding_dilithium",
-    ],
-)
-
-otbn_binary(
     name = "otbn_mldsa_plain_sign_test",
     srcs = [
         "sign_plain_dilithium_test.s",
@@ -3097,23 +3030,6 @@ otbn_binary(
         "//sw/otbn/crypto/handwritten:intt_base_dilithium",
         "//sw/otbn/crypto/handwritten:poly_add_base_dilithium",
         "//sw/otbn/crypto/handwritten:poly_base_dilithium",
-    ],
-)
-
-otbn_binary(
-    name = "otbn_mldsa_isaext_sign_test",
-    srcs = [
-        "sign_dilithium_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/handwritten:sign_dilithium",
-        "//sw/otbn/crypto/handwritten:ntt_dilithium",
-        "//sw/otbn/crypto/handwritten:intt_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_pointwise_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_add_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_sub_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_dilithium",
-        "//sw/otbn/crypto/handwritten:rounding_dilithium",
     ],
 )
 
@@ -3148,19 +3064,4 @@ otbn_binary(
     ],
 )
 
-otbn_binary(
-    name = "otbn_mldsa_isaext_verify_test",
-    srcs = [
-        "verify_dilithium_test.s",
-    ],
-    deps = [
-        "//sw/otbn/crypto/handwritten:verify_dilithium",
-        "//sw/otbn/crypto/handwritten:ntt_dilithium",
-        "//sw/otbn/crypto/handwritten:intt_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_pointwise_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_add_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_sub_dilithium",
-        "//sw/otbn/crypto/handwritten:poly_dilithium",
-        "//sw/otbn/crypto/handwritten:rounding_dilithium",
-    ],
-)
+ 

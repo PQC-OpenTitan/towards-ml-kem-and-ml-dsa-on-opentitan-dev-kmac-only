@@ -5661,7 +5661,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mlkem_plain_keypair_test",
         "//sw/otbn/crypto/tests:otbn_mlkem_base_keypair_test",
-        "//sw/otbn/crypto/tests:otbn_mlkem_isaext_keypair_test",
         # C libraries
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:params",
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:kem",
@@ -5692,7 +5691,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mlkem_plain_encap_test",
         "//sw/otbn/crypto/tests:otbn_mlkem_base_encap_test",
-        "//sw/otbn/crypto/tests:otbn_mlkem_isaext_encap_test",
         # C libraries
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:params",
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:kem",
@@ -5723,7 +5721,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mlkem_plain_decap_test",
         "//sw/otbn/crypto/tests:otbn_mlkem_base_decap_test",
-        "//sw/otbn/crypto/tests:otbn_mlkem_isaext_decap_test",
         # C libraries
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:params",
         "//sw/device/tests/pq-crystals/kyber_opentitan/ref:kem",
@@ -5755,11 +5752,10 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mldsa_plain_keypair_test",
         "//sw/otbn/crypto/tests:otbn_mldsa_base_keypair_test",
-        "//sw/otbn/crypto/tests:otbn_mldsa_isaext_keypair_test",
         # C libraries
-        "//sw/device/tests/pq-crystals/dilithium_opentitan/ref:params",
-        "//sw/device/tests/pq-crystals/dilithium_opentitan/ref:sign",
-        "//sw/device/tests/pq-crystals/dilithium_opentitan/ref:fips202",
+        "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:params",
+        "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:sign",
+        "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:fips202",
     ],
 )
 
@@ -5786,7 +5782,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mldsa_plain_sign_test",
         "//sw/otbn/crypto/tests:otbn_mldsa_base_sign_test",
-        "//sw/otbn/crypto/tests:otbn_mldsa_isaext_sign_test",
         # C libraries
         "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:params",
         "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:sign",
@@ -5817,7 +5812,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
         "//sw/otbn/crypto/tests:otbn_mldsa_plain_verify_test",
         "//sw/otbn/crypto/tests:otbn_mldsa_base_verify_test",
-        "//sw/otbn/crypto/tests:otbn_mldsa_isaext_verify_test",
         # C libraries
         "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:params",
         "//sw/device/tests/pq-crystals/dilithium_opentitan/lowram:sign",
